@@ -1,0 +1,28 @@
+PASS eleven demo identities, anonymous/role denial, invalid login, refresh rotation and reuse rejection, logout
+PASS patient portal ownership, verified-only lab results, own invoices/prescriptions and contact update
+PASS SMTP recovery, single-use reset, password sign-in, versioned account disable and stale-write rejection
+PASS patient registration, typed persistence, optimistic update conflict and clinician role validation
+PASS assigned clinician and patient isolation, encounter history and numeric vital signs
+PASS working schedule authority, duplicate booking constraint, approved leave Kafka cancellation saga
+PASS patient appointment request/approval, rescheduling, owner cancellation, doctor scope and early-completion prevention
+PASS medicine catalogue, prescription authority/cumulative cap, atomic stock movement
+PASS lab catalogue, sample collection/history, legal transitions and second-technician verification
+PASS itemized decimal invoice, PDF, payment retry, separate refund approval and idempotent settlement
+PASS Kafka notifications, individual read state, reporting projections/audit/health and CSV/PDF exports
+{
+  "passed": 11,
+  "requests": 106,
+  "checks": [
+    "eleven demo identities, anonymous/role denial, invalid login, refresh rotation and reuse rejection, logout",
+    "patient portal ownership, verified-only lab results, own invoices/prescriptions and contact update",
+    "SMTP recovery, single-use reset, password sign-in, versioned account disable and stale-write rejection",
+    "patient registration, typed persistence, optimistic update conflict and clinician role validation",
+    "assigned clinician and patient isolation, encounter history and numeric vital signs",
+    "working schedule authority, duplicate booking constraint, approved leave Kafka cancellation saga",
+    "patient appointment request/approval, rescheduling, owner cancellation, doctor scope and early-completion prevention",
+    "medicine catalogue, prescription authority/cumulative cap, atomic stock movement",
+    "lab catalogue, sample collection/history, legal transitions and second-technician verification",
+    "itemized decimal invoice, PDF, payment retry, separate refund approval and idempotent settlement",
+    "Kafka notifications, individual read state, reporting projections/audit/health and CSV/PDF exports"
+  ]
+}
