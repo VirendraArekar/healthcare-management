@@ -1,0 +1,116 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] hospital-platform                                                  [pom]
+[INFO] platform-common                                                    [jar]
+[INFO] pharmacy-service                                                   [jar]
+[INFO] 
+[INFO] -------------------< com.hospital:hospital-platform >-------------------
+[INFO] Building hospital-platform 1.0.0                                   [1/3]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --------------------< com.hospital:platform-common >--------------------
+[INFO] Building platform-common 1.0.0                                     [2/3]
+[INFO]   from backend/platform-common/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ platform-common ---
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ platform-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ platform-common ---
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ platform-common ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ platform-common ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.common.DirectoryEncodingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.490 s -- in com.hospital.common.DirectoryEncodingTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ platform-common ---
+[INFO] 
+[INFO] -------------------< com.hospital:pharmacy-service >--------------------
+[INFO] Building pharmacy-service 1.0.0                                    [3/3]
+[INFO]   from backend/pharmacy-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pharmacy-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ pharmacy-service ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pharmacy-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ pharmacy-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ pharmacy-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.pharmacy.StockWorkflowTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.042 s -- in com.hospital.pharmacy.StockWorkflowTest
+[INFO] Running com.hospital.pharmacy.SecurityTest
+22:09:49.781 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.pharmacy.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:09:50.390 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.pharmacy.Application for test class com.hospital.pharmacy.SecurityTest
+22:09:50.401 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.pharmacy.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+22:09:50.435 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.pharmacy.Application for test class com.hospital.pharmacy.SecurityTest
+{"@timestamp":"2026-10-27T22:09:52.395887+05:30","@version":"1","message":"Starting SecurityTest using Java 25.0.4.1 with PID 40924 (started by apple in /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service)","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T22:09:52.452131+05:30","@version":"1","message":"No active profile set, falling back to 1 default profile: \"default\"","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T22:10:00.933581+05:30","@version":"1","message":"Initializing Spring TestDispatcherServlet ''","logger_name":"org.springframework.boot.test.mock.web.SpringBootMockServletContext","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T22:10:00.93756+05:30","@version":"1","message":"Initializing Servlet ''","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T22:10:00.941513+05:30","@version":"1","message":"Completed initialization in 3 ms","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T22:10:01.060528+05:30","@version":"1","message":"Started SecurityTest in 10.368 seconds (process running for 18.576)","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.97 s -- in com.hospital.pharmacy.SecurityTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ pharmacy-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ pharmacy-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for hospital-platform 1.0.0:
+[INFO] 
+[INFO] hospital-platform .................................. SUCCESS [  0.010 s]
+[INFO] platform-common .................................... SUCCESS [ 14.903 s]
+[INFO] pharmacy-service ................................... SUCCESS [ 33.931 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  50.627 s
+[INFO] Finished at: 2026-10-27T22:10:07+05:30
+[INFO] ------------------------------------------------------------------------
