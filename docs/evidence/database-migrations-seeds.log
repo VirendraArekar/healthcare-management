@@ -1,0 +1,23 @@
+npm notice run hospital-database-validation@1.0.0 test
+npm notice run node --test migrations.test.mjs
+✔ all auth service migrations and repeatable seed execute on PostgreSQL/WASM (5134.112872ms)
+✔ all patient service migrations and repeatable seed execute on PostgreSQL/WASM (3594.438264ms)
+✔ all staff service migrations and repeatable seed execute on PostgreSQL/WASM (4527.772238ms)
+✔ all appointment service migrations and repeatable seed execute on PostgreSQL/WASM (4099.242439ms)
+✔ all medical-record service migrations and repeatable seed execute on PostgreSQL/WASM (3755.234103ms)
+✔ all lab service migrations and repeatable seed execute on PostgreSQL/WASM (3868.995477ms)
+✔ all pharmacy service migrations and repeatable seed execute on PostgreSQL/WASM (4823.95403ms)
+✔ all billing service migrations and repeatable seed execute on PostgreSQL/WASM (3733.816542ms)
+✔ all notification service migrations and repeatable seed execute on PostgreSQL/WASM (3750.993335ms)
+✔ all reporting service migrations and repeatable seed execute on PostgreSQL/WASM (4369.601933ms)
+✔ appointment database rejects overlapping availability and active duplicate booking (3631.211688ms)
+✔ stock cannot become negative and prescription cap is reserved atomically (3356.23925ms)
+✔ outbox and deduplication identifiers cannot be inserted twice (3302.527966ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 52345.217695
