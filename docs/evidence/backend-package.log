@@ -1,0 +1,679 @@
+[INFO] Scanning for projects...
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] hospital-platform                                                  [pom]
+[INFO] platform-common                                                    [jar]
+[INFO] auth-service                                                       [jar]
+[INFO] patient-service                                                    [jar]
+[INFO] staff-service                                                      [jar]
+[INFO] appointment-service                                                [jar]
+[INFO] medical-record-service                                             [jar]
+[INFO] lab-service                                                        [jar]
+[INFO] pharmacy-service                                                   [jar]
+[INFO] billing-service                                                    [jar]
+[INFO] notification-service                                               [jar]
+[INFO] reporting-service                                                  [jar]
+[INFO] api-gateway                                                        [jar]
+[INFO] 
+[INFO] -------------------< com.hospital:hospital-platform >-------------------
+[INFO] Building hospital-platform 1.0.0                                  [1/13]
+[INFO]   from pom.xml
+[INFO] --------------------------------[ pom ]---------------------------------
+[INFO] 
+[INFO] --------------------< com.hospital:platform-common >--------------------
+[INFO] Building platform-common 1.0.0                                    [2/13]
+[INFO]   from backend/platform-common/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ platform-common ---
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/main/resources
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ platform-common ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 32 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ platform-common ---
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ platform-common ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ platform-common ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.common.DirectoryEncodingTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.764 s -- in com.hospital.common.DirectoryEncodingTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ platform-common ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/platform-common/target/platform-common-1.0.0.jar
+[INFO] 
+[INFO] ---------------------< com.hospital:auth-service >----------------------
+[INFO] Building auth-service 1.0.0                                       [3/13]
+[INFO]   from backend/auth-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ auth-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ auth-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/src/main/java/com/hospital/auth/service/AuthService.java: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/src/main/java/com/hospital/auth/service/AuthService.java uses unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/src/main/java/com/hospital/auth/service/AuthService.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ auth-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ auth-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ auth-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.auth.AuthWorkflowTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.955 s -- in com.hospital.auth.AuthWorkflowTest
+[INFO] Running com.hospital.auth.TokenTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.022 s -- in com.hospital.auth.TokenTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ auth-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/target/auth-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ auth-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/target/auth-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/auth-service/target/auth-service-1.0.0.jar.original
+[INFO] 
+[INFO] --------------------< com.hospital:patient-service >--------------------
+[INFO] Building patient-service 1.0.0                                    [4/13]
+[INFO]   from backend/patient-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ patient-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ patient-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug parameters release 21] to target/classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/src/main/java/com/hospital/patient/service/PatientService.java: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/src/main/java/com/hospital/patient/service/PatientService.java uses unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/src/main/java/com/hospital/patient/service/PatientService.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ patient-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ patient-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ patient-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.patient.SecurityTest
+21:55:57.529 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.patient.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:55:57.931 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.patient.Application for test class com.hospital.patient.SecurityTest
+21:55:57.942 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.patient.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:55:57.976 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.patient.Application for test class com.hospital.patient.SecurityTest
+{"@timestamp":"2026-10-27T21:55:59.41828+05:30","@version":"1","message":"Starting SecurityTest using Java 25.0.4.1 with PID 40382 (started by apple in /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service)","logger_name":"com.hospital.patient.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:55:59.436267+05:30","@version":"1","message":"No active profile set, falling back to 1 default profile: \"default\"","logger_name":"com.hospital.patient.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+{"@timestamp":"2026-10-27T21:56:07.83574+05:30","@version":"1","message":"Initializing Spring TestDispatcherServlet ''","logger_name":"org.springframework.boot.test.mock.web.SpringBootMockServletContext","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:56:07.839053+05:30","@version":"1","message":"Initializing Servlet ''","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:56:07.846728+05:30","@version":"1","message":"Completed initialization in 6 ms","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:56:07.947476+05:30","@version":"1","message":"Started SecurityTest in 9.721 seconds (process running for 13.37)","logger_name":"com.hospital.patient.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.65 s -- in com.hospital.patient.SecurityTest
+[INFO] Running com.hospital.patient.CareAccessTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 s -- in com.hospital.patient.CareAccessTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ patient-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/target/patient-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ patient-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/target/patient-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/patient-service/target/patient-service-1.0.0.jar.original
+[INFO] 
+[INFO] ---------------------< com.hospital:staff-service >---------------------
+[INFO] Building staff-service 1.0.0                                      [5/13]
+[INFO]   from backend/staff-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ staff-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ staff-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 31 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ staff-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ staff-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/src/test/java/com/hospital/staff/ReferenceCacheTest.java: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/src/test/java/com/hospital/staff/ReferenceCacheTest.java uses unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/src/test/java/com/hospital/staff/ReferenceCacheTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ staff-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.staff.ReferenceCacheTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.567 s -- in com.hospital.staff.ReferenceCacheTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ staff-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/target/staff-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ staff-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/target/staff-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/staff-service/target/staff-service-1.0.0.jar.original
+[INFO] 
+[INFO] ------------------< com.hospital:appointment-service >------------------
+[INFO] Building appointment-service 1.0.0                                [6/13]
+[INFO]   from backend/appointment-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ appointment-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ appointment-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ appointment-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ appointment-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ appointment-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.appointment.BookingDatabaseTest
+21:56:32.508 [main] INFO org.testcontainers.DockerClientFactory -- Testcontainers version: 2.0.5
+21:56:33.636 [main] WARN org.testcontainers.dockerclient.DockerClientProviderStrategy -- DOCKER_HOST unix:///Users/apple/.docker/run/docker.sock is not listening
+java.net.ConnectException: Connection refused
+	at java.base/sun.nio.ch.UnixDomainSockets.connect0(Native Method)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:126)
+	at java.base/sun.nio.ch.UnixDomainSockets.connect(UnixDomainSockets.java:122)
+	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:950)
+	at java.base/java.nio.channels.SocketChannel.open(SocketChannel.java:281)
+	at com.github.dockerjava.transport.UnixSocket.<init>(UnixSocket.java:45)
+	at com.github.dockerjava.transport.UnixSocket.get(UnixSocket.java:27)
+	at org.testcontainers.dockerclient.DockerClientProviderStrategy.lambda$test$2(DockerClientProviderStrategy.java:194)
+	at org.testcontainers.dockerclient.DockerClientProviderStrategy.test(DockerClientProviderStrategy.java:208)
+	at org.testcontainers.dockerclient.DockerClientProviderStrategy.tryOutStrategy(DockerClientProviderStrategy.java:284)
+	at org.testcontainers.dockerclient.DockerClientProviderStrategy.lambda$getFirstValidStrategy$5(DockerClientProviderStrategy.java:263)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:196)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.tryAdvance(ArrayList.java:1693)
+	at java.base/java.util.stream.ReferencePipeline.forEachWithCancel(ReferencePipeline.java:147)
+	at java.base/java.util.stream.AbstractPipeline.copyIntoWithCancel(AbstractPipeline.java:588)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:574)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:560)
+	at java.base/java.util.stream.FindOps$FindOp.evaluateSequential(FindOps.java:150)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:265)
+	at java.base/java.util.stream.ReferencePipeline.findFirst(ReferencePipeline.java:683)
+	at org.testcontainers.dockerclient.DockerClientProviderStrategy.getFirstValidStrategy(DockerClientProviderStrategy.java:264)
+	at org.testcontainers.DockerClientFactory.getOrInitializeStrategy(DockerClientFactory.java:154)
+	at org.testcontainers.DockerClientFactory.client(DockerClientFactory.java:196)
+	at org.testcontainers.DockerClientFactory.isDockerAvailable(DockerClientFactory.java:138)
+	at com.hospital.appointment.BookingDatabaseTest.concurrentBookingUsesDatabaseConstraint(BookingDatabaseTest.java:16)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:701)
+	at org.junit.platform.commons.support.ReflectionSupport.invokeMethod(ReflectionSupport.java:502)
+	at org.junit.jupiter.engine.support.MethodReflectionUtils.invoke(MethodReflectionUtils.java:45)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:61)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:124)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:163)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestableMethod(TimeoutExtension.java:148)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptTestMethod(TimeoutExtension.java:86)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:123)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:105)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:99)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:66)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:47)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:39)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:104)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:98)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invokeVoid(InterceptingExecutableInvoker.java:71)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$invokeTestMethod$0(TestMethodTestDescriptor.java:219)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.invokeTestMethod(TestMethodTestDescriptor.java:215)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:157)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.execute(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:176)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+21:56:33.651 [main] INFO org.testcontainers.dockerclient.DockerMachineClientProviderStrategy -- docker-machine executable was not found on PATH ([/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path, /Users/apple/.rd/bin, /Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/bin, /Users/apple/.nvm/versions/node/v24.21.0/bin, /usr/local/bin, /System/Cryptexes/App/usr/bin, /usr/bin, /bin, /usr/sbin, /sbin, /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin, /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin, /var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin, /pkg/env/global/bin, /Library/Apple/usr/bin, /opt/podman/bin, /Users/apple/.codex/tmp/arg0-macos/codex-arg076pyHL, /Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path, /Users/apple/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override, /Users/apple/.rd/bin, /Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home/bin, /Users/apple/.nvm/versions/node/v24.21.0/bin, /Users/apple/.docker/bin, /Users/apple/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback, /Applications/ChatGPT.app/Contents/Resources, /Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS, /Users/apple/.docker/bin, /Users/apple/.docker/bin])
+21:56:33.654 [main] ERROR org.testcontainers.dockerclient.DockerClientProviderStrategy -- Could not find a valid Docker environment. Please check configuration. Attempted configurations were:
+	UnixSocketClientProviderStrategy: failed with exception InvalidConfigurationException (Could not find unix domain socket). Root cause NoSuchFileException (/var/run/docker.sock)As no valid configuration was found, execution cannot continue.
+See https://java.testcontainers.org/on_failure.html for more details.
+[WARNING] Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 1.637 s -- in com.hospital.appointment.BookingDatabaseTest
+[INFO] Running com.hospital.appointment.AppointmentAccessTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.697 s -- in com.hospital.appointment.AppointmentAccessTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 1
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ appointment-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/appointment-service/target/appointment-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ appointment-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/appointment-service/target/appointment-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/appointment-service/target/appointment-service-1.0.0.jar.original
+[INFO] 
+[INFO] ----------------< com.hospital:medical-record-service >-----------------
+[INFO] Building medical-record-service 1.0.0                             [7/13]
+[INFO]   from backend/medical-record-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ medical-record-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ medical-record-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 21 source files with javac [debug parameters release 21] to target/classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/src/main/java/com/hospital/medicalrecord/service/MedicalRecordService.java: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/src/main/java/com/hospital/medicalrecord/service/MedicalRecordService.java uses unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/src/main/java/com/hospital/medicalrecord/service/MedicalRecordService.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ medical-record-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ medical-record-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ medical-record-service ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ medical-record-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/target/medical-record-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ medical-record-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/target/medical-record-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/medical-record-service/target/medical-record-service-1.0.0.jar.original
+[INFO] 
+[INFO] ----------------------< com.hospital:lab-service >----------------------
+[INFO] Building lab-service 1.0.0                                        [8/13]
+[INFO]   from backend/lab-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ lab-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ lab-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 20 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ lab-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ lab-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ lab-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.lab.LabWorkflowTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.325 s -- in com.hospital.lab.LabWorkflowTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ lab-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/lab-service/target/lab-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ lab-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/lab-service/target/lab-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/lab-service/target/lab-service-1.0.0.jar.original
+[INFO] 
+[INFO] -------------------< com.hospital:pharmacy-service >--------------------
+[INFO] Building pharmacy-service 1.0.0                                   [9/13]
+[INFO]   from backend/pharmacy-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ pharmacy-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ pharmacy-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 16 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ pharmacy-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ pharmacy-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ pharmacy-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.pharmacy.StockWorkflowTest
+Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+WARNING: A Java agent has been loaded dynamically (/Users/apple/Documents/Codex/2026-10-27/gi/work/maven-cache/net/bytebuddy/byte-buddy-agent/1.17.8/byte-buddy-agent-1.17.8.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.717 s -- in com.hospital.pharmacy.StockWorkflowTest
+[INFO] Running com.hospital.pharmacy.SecurityTest
+21:57:11.974 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.pharmacy.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:57:12.498 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.pharmacy.Application for test class com.hospital.pharmacy.SecurityTest
+21:57:12.509 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.hospital.pharmacy.SecurityTest]: SecurityTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+21:57:12.570 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.hospital.pharmacy.Application for test class com.hospital.pharmacy.SecurityTest
+{"@timestamp":"2026-10-27T21:57:14.319313+05:30","@version":"1","message":"Starting SecurityTest using Java 25.0.4.1 with PID 40424 (started by apple in /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service)","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:57:14.341082+05:30","@version":"1","message":"No active profile set, falling back to 1 default profile: \"default\"","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:57:21.63166+05:30","@version":"1","message":"Initializing Spring TestDispatcherServlet ''","logger_name":"org.springframework.boot.test.mock.web.SpringBootMockServletContext","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:57:21.634103+05:30","@version":"1","message":"Initializing Servlet ''","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:57:21.641469+05:30","@version":"1","message":"Completed initialization in 6 ms","logger_name":"org.springframework.test.web.servlet.TestDispatcherServlet","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+{"@timestamp":"2026-10-27T21:57:21.772546+05:30","@version":"1","message":"Started SecurityTest in 8.951 seconds (process running for 20.533)","logger_name":"com.hospital.pharmacy.SecurityTest","thread_name":"main","level":"INFO","level_value":20000,"tags":["COMMONS-LOGGING"]}
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.71 s -- in com.hospital.pharmacy.SecurityTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 8, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ pharmacy-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ pharmacy-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/pharmacy-service/target/pharmacy-service-1.0.0.jar.original
+[INFO] 
+[INFO] --------------------< com.hospital:billing-service >--------------------
+[INFO] Building billing-service 1.0.0                                   [10/13]
+[INFO]   from backend/billing-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ billing-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ billing-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 21 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ billing-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ billing-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ billing-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.billing.BillingMathTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.440 s -- in com.hospital.billing.BillingMathTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ billing-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/billing-service/target/billing-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ billing-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/billing-service/target/billing-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/billing-service/target/billing-service-1.0.0.jar.original
+[INFO] 
+[INFO] -----------------< com.hospital:notification-service >------------------
+[INFO] Building notification-service 1.0.0                              [11/13]
+[INFO]   from backend/notification-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notification-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 5 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ notification-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 15 source files with javac [debug parameters release 21] to target/classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/notification-service/src/main/java/com/hospital/notification/dao/NotificationDao.java: Some input files use unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/notification-service/src/main/java/com/hospital/notification/dao/NotificationDao.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ notification-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ notification-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug parameters release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ notification-service ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.hospital.notification.EventContractTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.412 s -- in com.hospital.notification.EventContractTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ notification-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/notification-service/target/notification-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ notification-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/notification-service/target/notification-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/notification-service/target/notification-service-1.0.0.jar.original
+[INFO] 
+[INFO] -------------------< com.hospital:reporting-service >-------------------
+[INFO] Building reporting-service 1.0.0                                 [12/13]
+[INFO]   from backend/reporting-service/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ reporting-service ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 3 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ reporting-service ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 11 source files with javac [debug parameters release 21] to target/classes
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/src/main/java/com/hospital/reporting/event/EventConsumer.java: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/src/main/java/com/hospital/reporting/event/EventConsumer.java uses unchecked or unsafe operations.
+[INFO] /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/src/main/java/com/hospital/reporting/event/EventConsumer.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ reporting-service ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ reporting-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ reporting-service ---
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ reporting-service ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/target/reporting-service-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ reporting-service ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/target/reporting-service-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/reporting-service/target/reporting-service-1.0.0.jar.original
+[INFO] 
+[INFO] ----------------------< com.hospital:api-gateway >----------------------
+[INFO] Building api-gateway 1.0.0                                       [13/13]
+[INFO]   from backend/api-gateway/pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ api-gateway ---
+[INFO] Copying 6 resources from src/main/resources to target/classes
+[INFO] Copying 0 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ api-gateway ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 2 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ api-gateway ---
+[INFO] skip non existing resourceDirectory /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/api-gateway/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ api-gateway ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.5.6:test (default-test) @ api-gateway ---
+[INFO] No tests to run.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ api-gateway ---
+[INFO] Building jar: /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/api-gateway/target/api-gateway-1.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:4.0.9:repackage (repackage) @ api-gateway ---
+[INFO] Replacing main artifact /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/api-gateway/target/api-gateway-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/backend/api-gateway/target/api-gateway-1.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for hospital-platform 1.0.0:
+[INFO] 
+[INFO] hospital-platform .................................. SUCCESS [  0.040 s]
+[INFO] platform-common .................................... SUCCESS [ 24.637 s]
+[INFO] auth-service ....................................... SUCCESS [ 11.673 s]
+[INFO] patient-service .................................... SUCCESS [ 20.016 s]
+[INFO] staff-service ...................................... SUCCESS [ 13.455 s]
+[INFO] appointment-service ................................ SUCCESS [ 12.747 s]
+[INFO] medical-record-service ............................. SUCCESS [  2.925 s]
+[INFO] lab-service ........................................ SUCCESS [ 13.330 s]
+[INFO] pharmacy-service ................................... SUCCESS [ 33.232 s]
+[INFO] billing-service .................................... SUCCESS [ 10.867 s]
+[INFO] notification-service ............................... SUCCESS [  7.669 s]
+[INFO] reporting-service .................................. SUCCESS [  3.122 s]
+[INFO] api-gateway ........................................ SUCCESS [  9.192 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  02:46 min
+[INFO] Finished at: 2026-10-27T21:57:58+05:30
+[INFO] ------------------------------------------------------------------------
