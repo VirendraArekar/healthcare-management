@@ -1,0 +1,2 @@
+PASS in-app browser: login, live dashboard, patient list, registration form submit, persisted Browser Synthetic patient, developer footer.
+Headless Playwright launch blocked by macOS Mach-port permission.
