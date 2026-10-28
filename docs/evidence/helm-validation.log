@@ -1,0 +1,10 @@
+PASS local lint
+PASS local template
+PASS dev lint
+PASS dev template
+PASS uat lint
+PASS uat template
+PASS preprod lint
+PASS preprod template
+PASS prod lint
+PASS prod template
