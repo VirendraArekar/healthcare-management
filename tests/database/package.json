@@ -1,0 +1,14 @@
+{
+  "name": "hospital-database-validation",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test migrations.test.mjs",
+    "serve": "node database-server.mjs"
+  },
+  "dependencies": {
+    "@electric-sql/pglite": "0.5.12",
+    "@electric-sql/pglite-socket": "0.2.15"
+  }
+}
