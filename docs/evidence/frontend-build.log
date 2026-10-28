@@ -1,0 +1,25 @@
+npm notice run hospital-frontend@1.0.0 build
+npm notice run tsc -b && vite build
+vite v7.3.7 building client environment for production...
+transforming...
+node_modules/zod/v4/core/regexes.js (74:0): A comment
+
+"/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+ * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+ * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+
+in "node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+node_modules/zod/v4/core/util.js (400:0): A comment
+
+"// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+
+in "node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+✓ 1037 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.62 kB │ gzip:   0.34 kB
+dist/assets/index-CQWVySKE.css   18.44 kB │ gzip:   5.23 kB
+dist/assets/react-CO1FEVI5.js    49.86 kB │ gzip:  17.67 kB
+dist/assets/charts-HCHZK-Wq.js  304.51 kB │ gzip:  92.73 kB
+dist/assets/index-DFzija49.js   440.19 kB │ gzip: 136.77 kB
+✓ built in 14.90s
