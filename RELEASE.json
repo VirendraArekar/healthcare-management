@@ -1,0 +1,28 @@
+{
+  "name": "Hospital Healthcare Platform",
+  "revision": "final-structured-boot4",
+  "javaTarget": 21,
+  "springBoot": "4.0.9",
+  "springCloud": "2025.1.4",
+  "sourceFileCounts": {
+    ".java": 227,
+    ".tsx": 33,
+    ".ts": 17,
+    ".sql": 57
+  },
+  "gatewayAcceptance": {
+    "requests": 106,
+    "workflowGroups": 11,
+    "passed": true
+  },
+  "backendTests": {
+    "total": 40,
+    "passed": 39,
+    "skipped": 1
+  },
+  "frontendTestsPassed": 8,
+  "databaseTestsPassed": 13,
+  "runtimeSbomComponents": 205,
+  "reportedRuntimeVulnerabilities": 0,
+  "notes": "See docs/TEST-REPORT.md, SECURITY-REPORT.md and DEPLOYMENT-VALIDATION.md for scope and unexecuted native deployment checks."
+}
