@@ -1,0 +1,12 @@
+node_modules/
+target/
+dist/
+.env
+.env.*
+!.env.example
+*.dump
+playwright-report/
+test-results/
+.idea/
+.DS_Store
+.scheduled-push/
