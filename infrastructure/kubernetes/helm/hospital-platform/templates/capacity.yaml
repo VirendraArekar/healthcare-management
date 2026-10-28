@@ -1,0 +1,29 @@
+{{- if .Values.autoscaling.enabled }}
+{{- range $name, $image := .Values.images }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata: {name: {{ $name }}, namespace: {{ $.Release.Namespace }}}
+spec:
+  scaleTargetRef: {apiVersion: apps/v1, kind: Deployment, name: {{ $name }}}
+  minReplicas: {{ $.Values.autoscaling.minReplicas }}
+  maxReplicas: {{ $.Values.autoscaling.maxReplicas }}
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target: {type: Utilization, averageUtilization: {{ $.Values.autoscaling.targetCPU }}}
+{{- end }}
+{{- end }}
+{{- if .Values.quota.enabled }}
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata: {name: hospital-capacity, namespace: {{ .Release.Namespace }}}
+spec:
+  hard:
+    requests.cpu: {{ .Values.quota.requestsCPU | quote }}
+    requests.memory: {{ .Values.quota.requestsMemory }}
+    limits.cpu: {{ .Values.quota.limitsCPU | quote }}
+    limits.memory: {{ .Values.quota.limitsMemory }}
+{{- end }}

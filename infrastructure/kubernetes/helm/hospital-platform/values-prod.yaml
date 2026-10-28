@@ -1,0 +1,13 @@
+environment: prod
+replicas: 2
+secretName: hospital-prod-secrets
+ingress:
+  enabled: true
+  host: hospital.example.invalid
+  className: nginx
+migrations:
+  enabled: true
+autoscaling:
+  enabled: true
+quota:
+  enabled: true

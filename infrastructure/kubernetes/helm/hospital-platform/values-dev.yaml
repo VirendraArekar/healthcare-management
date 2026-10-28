@@ -1,0 +1,9 @@
+environment: dev
+replicas: 1
+secretName: hospital-dev-secrets
+ingress:
+  enabled: true
+  host: hospital.example.invalid
+  className: nginx
+migrations:
+  enabled: true

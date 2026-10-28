@@ -1,0 +1,9 @@
+environment: uat
+replicas: 1
+secretName: hospital-uat-secrets
+ingress:
+  enabled: true
+  host: hospital.example.invalid
+  className: nginx
+migrations:
+  enabled: true

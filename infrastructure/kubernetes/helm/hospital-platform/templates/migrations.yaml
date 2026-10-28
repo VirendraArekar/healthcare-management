@@ -1,0 +1,40 @@
+{{- if .Values.migrations.enabled }}
+{{- range $name, $image := .Values.images }}
+{{- if hasSuffix "-service" $name }}
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ $name }}-migrate-{{ $.Release.Revision }}
+  namespace: {{ $.Release.Namespace }}
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-weight: '-5'
+    helm.sh/hook-delete-policy: before-hook-creation,hook-succeeded
+spec:
+  backoffLimit: 1
+  activeDeadlineSeconds: 300
+  template:
+    metadata:
+      labels: {part-of: hospital, app: {{ $name }}-migrate}
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: Never
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, runAsGroup: 10001, fsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: migrate
+          image: {{ $image | quote }}
+          command: [java, '-Dloader.main=com.hospital.common.migration.MigrateMain', '-cp', /app/app.jar, org.springframework.boot.loader.launch.PropertiesLauncher]
+          resources: {{- toYaml $.Values.resources | nindent 12 }}
+          securityContext: {readOnlyRootFilesystem: true, allowPrivilegeEscalation: false, capabilities: {drop: [ALL]}}
+          volumeMounts: [{name: temp, mountPath: /tmp}]
+          env:
+            - {name: DB_URL, value: "jdbc:postgresql://{{ $.Values.databaseHost }}:5432/{{ trimSuffix "-service" $name | replace "-" "_" }}_db"}
+            - {name: DB_USER, value: "{{ trimSuffix "-service" $name | replace "-" "_" }}_user"}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: {{ $.Values.secretName }}, key: "{{ trimSuffix "-service" $name }}-db-password"}
+      volumes: [{name: temp, emptyDir: {sizeLimit: 128Mi}}]
+{{- end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,262 @@
+name: hospital-platform
+services:
+  postgres:
+    image: postgres:17.6-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run scripts/init-local.sh}
+      SERVICE_DB_PASSWORD: ${SERVICE_DB_PASSWORD:?Run scripts/init-local.sh}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./infrastructure/postgres/init.sh:/docker-entrypoint-initdb.d/01-init.sh:ro
+    networks: [internal]
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U postgres']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+  kafka:
+    image: apache/kafka:3.9.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    volumes: [kafka-data:/var/lib/kafka/data]
+    networks: [internal]
+    healthcheck:
+      test: [CMD-SHELL, '/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null']
+      interval: 10s
+      timeout: 10s
+      retries: 30
+  kafka-init:
+    image: apache/kafka:3.9.1
+    entrypoint: [/bin/bash, /init/topics.sh]
+    volumes: [./infrastructure/kafka/topics.sh:/init/topics.sh:ro]
+    depends_on:
+      kafka: {condition: service_healthy}
+    networks: [internal]
+  redis:
+    image: redis:7.4.5-alpine
+    command: [redis-server, --appendonly, 'yes']
+    volumes: [redis-data:/data]
+    networks: [internal]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  mailpit:
+    image: axllent/mailpit:v1.27.8
+    ports: ['127.0.0.1:8025:8025']
+    networks: [internal]
+  frontend:
+    build: {context: ., dockerfile: frontend/Dockerfile}
+    ports: ['127.0.0.1:3000:8080']
+    depends_on: [api-gateway]
+    networks: [internal, edge]
+  api-gateway:
+    build: {context: ., dockerfile: backend/api-gateway/Dockerfile}
+    environment:
+      JWT_SECRET: ${JWT_SECRET:?Run scripts/init-local.sh}
+      SPRING_PROFILES_ACTIVE: local
+    depends_on:
+      redis: {condition: service_healthy}
+    ports: ['127.0.0.1:8080:8080']
+    networks: [internal]
+  auth-service:
+    build: {context: ., dockerfile: backend/auth-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/auth_db
+      DB_USER: auth_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  patient-service:
+    build: {context: ., dockerfile: backend/patient-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/patient_db
+      DB_USER: patient_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  staff-service:
+    build: {context: ., dockerfile: backend/staff-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/staff_db
+      DB_USER: staff_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  appointment-service:
+    build: {context: ., dockerfile: backend/appointment-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/appointment_db
+      DB_USER: appointment_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  medical-record-service:
+    build: {context: ., dockerfile: backend/medical-record-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/medical_record_db
+      DB_USER: medical_record_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  lab-service:
+    build: {context: ., dockerfile: backend/lab-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/lab_db
+      DB_USER: lab_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  pharmacy-service:
+    build: {context: ., dockerfile: backend/pharmacy-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/pharmacy_db
+      DB_USER: pharmacy_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  billing-service:
+    build: {context: ., dockerfile: backend/billing-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/billing_db
+      DB_USER: billing_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  notification-service:
+    build: {context: ., dockerfile: backend/notification-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/notification_db
+      DB_USER: notification_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  reporting-service:
+    build: {context: ., dockerfile: backend/reporting-service/Dockerfile}
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://postgres:5432/reporting_db
+      DB_USER: reporting_user
+      DB_PASSWORD: ${SERVICE_DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      DEMO_ENABLED: 'true'
+      DEMO_PASSWORD: ${DEMO_PASSWORD}
+      JAVA_TOOL_OPTIONS: -Xms64m -Xmx256m
+    depends_on:
+      postgres: {condition: service_healthy}
+      kafka-init: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    networks: [internal]
+  prometheus:
+    image: prom/prometheus:v3.6.0
+    command: [--config.file=/etc/prometheus/prometheus.yml, --web.enable-lifecycle]
+    volumes:
+      - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports: ['127.0.0.1:9090:9090']
+    networks: [internal]
+  grafana:
+    image: grafana/grafana:12.2.0
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:?Run scripts/init-local.sh}
+      GF_USERS_ALLOW_SIGN_UP: 'false'
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infrastructure/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports: ['127.0.0.1:3001:3000']
+    networks: [internal]
+networks:
+  internal: {internal: true}
+  edge: {}
+volumes:
+  postgres-data: {}
+  kafka-data: {}
+  redis-data: {}
+  prometheus-data: {}
+  grafana-data: {}

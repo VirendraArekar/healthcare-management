@@ -1,0 +1,74 @@
+{{- range $name, $image := .Values.images }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $name }}
+  namespace: {{ $.Release.Namespace }}
+  labels: {app: {{ $name }}, part-of: hospital}
+spec:
+  replicas: {{ $.Values.replicas }}
+  selector:
+    matchLabels: {app: {{ $name }}}
+  template:
+    metadata:
+      labels: {app: {{ $name }}, part-of: hospital}
+    spec:
+      serviceAccountName: hospital
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, fsGroup: 10001, seccompProfile: {type: RuntimeDefault}}
+      volumes:
+        - name: temp
+          emptyDir: {sizeLimit: 128Mi}
+      containers:
+        - name: {{ $name }}
+          image: {{ $image | quote }}
+          imagePullPolicy: {{ $.Values.imagePullPolicy }}
+          ports: [{containerPort: 8080}]
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsUser: {{ if eq $name "frontend" }}101{{ else }}10001{{ end }}
+            runAsGroup: {{ if eq $name "frontend" }}101{{ else }}10001{{ end }}
+            capabilities: {drop: [ALL]}
+          volumeMounts:
+            - {name: temp, mountPath: /tmp}
+          resources:
+            {{- toYaml $.Values.resources | nindent 12 }}
+          envFrom:
+            - secretRef: {name: {{ $.Values.secretName }}}
+          env:
+            {{- if $.Values.migrations.enabled }}
+            - {name: SPRING_FLYWAY_ENABLED, value: 'false'}
+            {{- end }}
+            - {name: SPRING_PROFILES_ACTIVE, value: {{ $.Values.environment | quote }}}
+            - {name: KAFKA_BOOTSTRAP_SERVERS, value: {{ $.Values.kafkaBootstrapServers | quote }}}
+            - {name: REDIS_HOST, value: {{ $.Values.redisHost | quote }}}
+            - {name: MAIL_HOST, value: {{ $.Values.mailHost | quote }}}
+            - {name: CORS_ORIGIN, value: {{ $.Values.corsOrigin | quote }}}
+            {{- if hasSuffix "-service" $name }}
+            - {name: DB_URL, value: "jdbc:postgresql://{{ $.Values.databaseHost }}:5432/{{ trimSuffix "-service" $name | replace "-" "_" }}_db"}
+            - {name: DB_USER, value: "{{ trimSuffix "-service" $name | replace "-" "_" }}_user"}
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef: {name: {{ $.Values.secretName }}, key: "{{ trimSuffix "-service" $name }}-db-password"}
+            {{- end }}
+          readinessProbe:
+            httpGet: {path: {{ if eq $name "frontend" }}/{{ else }}/actuator/health/readiness{{ end }}, port: 8080}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: {path: {{ if eq $name "frontend" }}/{{ else }}/actuator/health/liveness{{ end }}, port: 8080}
+            periodSeconds: 20
+          startupProbe:
+            httpGet: {path: {{ if eq $name "frontend" }}/{{ else }}/actuator/health/liveness{{ end }}, port: 8080}
+            failureThreshold: 60
+            periodSeconds: 5
+---
+apiVersion: v1
+kind: Service
+metadata: {name: {{ $name }}, namespace: {{ $.Release.Namespace }}}
+spec:
+  selector: {app: {{ $name }}}
+  ports: [{name: http, port: 8080, targetPort: 8080}]
+{{- end }}

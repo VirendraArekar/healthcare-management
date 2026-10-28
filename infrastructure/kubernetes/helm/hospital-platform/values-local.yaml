@@ -1,0 +1,3 @@
+environment: local
+replicas: 1
+secretName: hospital-local-secrets

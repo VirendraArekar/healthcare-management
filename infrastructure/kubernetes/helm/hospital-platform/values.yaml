@@ -1,0 +1,43 @@
+environment: local
+replicas: 1
+secretName: hospital-secrets
+imagePullPolicy: IfNotPresent
+databaseHost: postgres
+kafkaBootstrapServers: kafka:9092
+redisHost: redis
+mailHost: mailpit
+corsOrigin: http://localhost:3000
+ingress:
+  enabled: false
+  host: hospital.example.invalid
+  className: nginx
+resources:
+  requests: {cpu: 100m, memory: 256Mi}
+  limits: {cpu: '1', memory: 512Mi}
+images:
+  frontend: "hospital/frontend:local"
+  api-gateway: "hospital/api-gateway:local"
+  auth-service: "hospital/auth-service:local"
+  patient-service: "hospital/patient-service:local"
+  staff-service: "hospital/staff-service:local"
+  appointment-service: "hospital/appointment-service:local"
+  medical-record-service: "hospital/medical-record-service:local"
+  lab-service: "hospital/lab-service:local"
+  pharmacy-service: "hospital/pharmacy-service:local"
+  billing-service: "hospital/billing-service:local"
+  notification-service: "hospital/notification-service:local"
+  reporting-service: "hospital/reporting-service:local"
+
+migrations:
+  enabled: false
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPU: 70
+quota:
+  enabled: false
+  requestsCPU: '8'
+  requestsMemory: 8Gi
+  limitsCPU: '24'
+  limitsMemory: 16Gi

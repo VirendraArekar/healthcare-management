@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hospital event v1",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "eventVersion",
+    "occurredAt",
+    "correlationId",
+    "aggregateId",
+    "payload"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "eventType": {
+      "enum": [
+        "patient.registered.v1",
+        "patient.updated.v1",
+        "staff.created.v1",
+        "appointment.booked.v1",
+        "appointment.rescheduled.v1",
+        "appointment.cancelled.v1",
+        "medical-record.created.v1",
+        "lab.order-created.v1",
+        "lab.result-verified.v1",
+        "pharmacy.stock-low.v1",
+        "pharmacy.medicine-dispensed.v1",
+        "billing.invoice-created.v1",
+        "billing.payment-completed.v1",
+        "notification.requested.v1",
+        "staff.leave-approved.v1",
+        "billing.refund-completed.v1",
+        "auth.security-event.v1",
+        "pharmacy.stock-expiring.v1"
+      ]
+    },
+    "eventVersion": {
+      "const": 1
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "correlationId": {
+      "type": "string"
+    },
+    "aggregateId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: hospital-services
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["auth-service:8080","patient-service:8080","staff-service:8080","appointment-service:8080","medical-record-service:8080","lab-service:8080","pharmacy-service:8080","billing-service:8080","notification-service:8080","reporting-service:8080"]
