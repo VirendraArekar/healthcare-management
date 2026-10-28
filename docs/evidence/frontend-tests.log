@@ -1,0 +1,11 @@
+npm notice run hospital-frontend@1.0.0 test
+npm notice run vitest run
+
+ RUN  v5.0.5 /Users/apple/Documents/Codex/2026-10-27/gi/work/hospital-healthcare-platform/frontend
+
+
+ Test Files  3 passed (3)
+      Tests  8 passed (8)
+   Start at  21:49:05
+   Duration  10.75s (environment 40%, import 34%, tests 16%, setup 5%, transform 3%, worker 1%)
+
