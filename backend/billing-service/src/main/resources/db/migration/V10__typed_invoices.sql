@@ -1,0 +1,10 @@
+CREATE TABLE invoices(id uuid PRIMARY KEY,patient_id uuid NOT NULL,subtotal numeric(14,2) NOT NULL,tax_percent numeric(7,4) NOT NULL,discount numeric(14,2) NOT NULL,total numeric(14,2) NOT NULL,status varchar(30) NOT NULL,currency varchar(3) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO invoices(id,patient_id,subtotal,tax_percent,discount,total,status,currency,version,created_at) SELECT id,nullif(data->>'patientId','')::uuid,coalesce(nullif(data->>'subtotal','')::numeric,0),coalesce(nullif(data->>'taxPercent','')::numeric,0),coalesce(nullif(data->>'discount','')::numeric,0),coalesce(nullif(data->>'total','')::numeric,0),coalesce(data->>'status','UNPAID'),coalesce(data->>'currency','USD'),version,created_at FROM records WHERE kind='invoice';
+CREATE INDEX invoices_owner_created ON invoices(patient_id,created_at);
+ALTER TABLE payments DROP CONSTRAINT payments_invoice_id_fkey;ALTER TABLE payments ADD FOREIGN KEY(invoice_id) REFERENCES invoices(id);
+CREATE TABLE invoice_line_items(invoice_id uuid NOT NULL REFERENCES invoices(id),line_index integer NOT NULL,description varchar(200) NOT NULL,quantity integer NOT NULL CHECK(quantity>0),unit_price numeric(14,2) NOT NULL CHECK(unit_price>=0),PRIMARY KEY(invoice_id,line_index));
+INSERT INTO invoice_line_items(invoice_id,line_index,description,quantity,unit_price)
+SELECT r.id,(item.ordinality-1)::integer,item.value->>'description',(item.value->>'quantity')::integer,(item.value->>'unitPrice')::numeric
+FROM records r CROSS JOIN LATERAL jsonb_array_elements(CASE WHEN jsonb_typeof(r.data->'lineItems')='array' THEN r.data->'lineItems' ELSE '[]'::jsonb END) WITH ORDINALITY AS item(value,ordinality) WHERE r.kind='invoice';
+INSERT INTO invoice_line_items SELECT i.id,0,'Legacy service charge',1,i.subtotal FROM invoices i WHERE NOT EXISTS(SELECT 1 FROM invoice_line_items l WHERE l.invoice_id=i.id);
+ALTER TABLE invoices ADD CONSTRAINT invoice_amounts CHECK(subtotal>=0 AND discount>=0 AND discount<=subtotal AND tax_percent BETWEEN 0 AND 100 AND total>=0);

@@ -1,0 +1,2 @@
+INSERT INTO medicines(id,name,strength,unit,manufacturer,reorder_level,status) VALUES('41000000-0000-0000-0000-000000000001','Synthetic medicine 100mg','100mg','tablet','Synthetic demonstration',10,'ACTIVE') ON CONFLICT DO NOTHING;
+INSERT INTO batches(id,medicine,quantity,expires_on) VALUES('40000000-0000-0000-0000-000000000001','Synthetic medicine 100mg',100,current_date+365) ON CONFLICT DO NOTHING;

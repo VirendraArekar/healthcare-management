@@ -1,0 +1,1 @@
+CREATE TABLE report_counts(event_type text PRIMARY KEY,total bigint NOT NULL DEFAULT 0);

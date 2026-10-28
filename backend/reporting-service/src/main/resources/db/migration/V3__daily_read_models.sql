@@ -1,0 +1,1 @@
+CREATE TABLE daily_metrics(day date NOT NULL,event_type text NOT NULL,total bigint NOT NULL DEFAULT 0,amount numeric(18,2) NOT NULL DEFAULT 0,PRIMARY KEY(day,event_type));CREATE TABLE doctor_utilization(doctor_id uuid PRIMARY KEY,appointments bigint NOT NULL DEFAULT 0);

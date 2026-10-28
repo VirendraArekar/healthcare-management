@@ -1,0 +1,78 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  data:
+    redis:
+      host: ${REDIS_HOST:redis}
+      timeout: 500ms
+  cloud:
+    gateway:
+      server:
+        webflux:
+          httpclient:
+            connect-timeout: 3000
+            response-timeout: 15s
+          globalcors:
+            cors-configurations:
+              '[/**]':
+                allowedOrigins: ${CORS_ORIGIN:http://localhost:3000}
+                allowedMethods: [GET,POST,PUT,PATCH,DELETE,OPTIONS]
+                allowedHeaders: [Authorization,Content-Type,Idempotency-Key,X-Correlation-ID]
+          default-filters:
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 20
+                redis-rate-limiter.burstCapacity: 40
+                key-resolver: '#{@clientKey}'
+          routes:
+            - id: auth
+              uri: ${AUTH_URL:http://auth-service:8080}
+              predicates:
+                - Path=/api/auth/**,/api/audit/**
+            - id: patient
+              uri: ${PATIENT_URL:http://patient-service:8080}
+              predicates:
+                - Path=/api/patients/**
+            - id: staff
+              uri: ${STAFF_URL:http://staff-service:8080}
+              predicates:
+                - Path=/api/staff/**,/api/departments/**
+            - id: appointment
+              uri: ${APPOINTMENT_URL:http://appointment-service:8080}
+              predicates:
+                - Path=/api/appointments/**
+            - id: medical-record
+              uri: ${MEDICAL_RECORD_URL:http://medical-record-service:8080}
+              predicates:
+                - Path=/api/medical-records/**
+            - id: lab
+              uri: ${LAB_URL:http://lab-service:8080}
+              predicates:
+                - Path=/api/lab/**
+            - id: pharmacy
+              uri: ${PHARMACY_URL:http://pharmacy-service:8080}
+              predicates:
+                - Path=/api/pharmacy/**
+            - id: billing
+              uri: ${BILLING_URL:http://billing-service:8080}
+              predicates:
+                - Path=/api/billing/**
+            - id: notification
+              uri: ${NOTIFICATION_URL:http://notification-service:8080}
+              predicates:
+                - Path=/api/notifications/**
+            - id: reporting
+              uri: ${REPORTING_URL:http://reporting-service:8080}
+              predicates:
+                - Path=/api/reports/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true

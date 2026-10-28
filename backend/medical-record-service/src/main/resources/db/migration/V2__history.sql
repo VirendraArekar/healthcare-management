@@ -1,0 +1,1 @@
+CREATE TABLE record_history(id uuid PRIMARY KEY,record_id uuid NOT NULL REFERENCES records(id),version bigint NOT NULL,data text NOT NULL,actor text NOT NULL,created_at timestamptz NOT NULL DEFAULT now());CREATE INDEX history_record ON record_history(record_id,version);

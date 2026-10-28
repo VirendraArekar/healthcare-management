@@ -1,0 +1,3 @@
+hospital:
+  environment: dev
+  demo-enabled: false

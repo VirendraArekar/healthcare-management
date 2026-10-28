@@ -1,0 +1,1 @@
+CREATE TABLE notification_reads(notification_id uuid NOT NULL REFERENCES notifications(id),actor_id uuid NOT NULL,read_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(notification_id,actor_id));CREATE INDEX notification_reads_actor ON notification_reads(actor_id,notification_id);

@@ -1,0 +1,6 @@
+CREATE TABLE refunds(id uuid PRIMARY KEY,invoice_id uuid NOT NULL,status varchar(30) NOT NULL,requested_by uuid NOT NULL,approved_by uuid,reason text,amount numeric(14,2) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO refunds(id,invoice_id,status,requested_by,approved_by,reason,amount,version,created_at) SELECT id,nullif(data->>'invoiceId','')::uuid,coalesce(data->>'status','REQUESTED'),nullif(data->>'requestedBy','')::uuid,nullif(data->>'approvedBy','')::uuid,data->>'reason',coalesce(nullif(data->>'amount','')::numeric,0),version,created_at FROM records WHERE kind='refund';
+
+ALTER TABLE refunds ADD FOREIGN KEY(invoice_id) REFERENCES invoices(id);CREATE UNIQUE INDEX active_refund_per_invoice ON refunds(invoice_id) WHERE status IN('REQUESTED','APPROVED','COMPLETED');CREATE TABLE refund_settlements(id uuid PRIMARY KEY,refund_id uuid UNIQUE NOT NULL REFERENCES refunds(id),invoice_id uuid NOT NULL REFERENCES invoices(id),amount numeric(14,2) NOT NULL CHECK(amount>=0),provider text NOT NULL DEFAULT 'SIMULATED',created_at timestamptz NOT NULL DEFAULT now());
+
+UPDATE refunds r SET amount=i.total FROM invoices i WHERE r.invoice_id=i.id AND r.amount=0;

@@ -1,0 +1,1 @@
+CREATE TABLE payments(id uuid PRIMARY KEY,invoice_id uuid UNIQUE NOT NULL REFERENCES records(id),idempotency_key uuid UNIQUE NOT NULL,amount numeric(14,2) NOT NULL CHECK(amount>=0),created_at timestamptz NOT NULL DEFAULT now());

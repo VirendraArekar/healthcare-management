@@ -1,0 +1,4 @@
+CREATE TABLE laboratory_orders(id uuid PRIMARY KEY,patient_id uuid NOT NULL,test varchar(200) NOT NULL,status varchar(30) NOT NULL,result text,reference_range varchar(200),unit varchar(40),entered_by uuid,verified_by uuid,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO laboratory_orders(id,patient_id,test,status,result,reference_range,unit,entered_by,verified_by,version,created_at) SELECT id,nullif(data->>'patientId','')::uuid,data->>'test',coalesce(data->>'status','ORDERED'),data->>'result',data->>'referenceRange',data->>'unit',nullif(data->>'enteredBy','')::uuid,nullif(data->>'verifiedBy','')::uuid,version,created_at FROM records WHERE kind='order';
+CREATE INDEX laboratory_orders_owner_created ON laboratory_orders(patient_id,created_at);
+ALTER TABLE laboratory_orders ADD CONSTRAINT laboratory_status CHECK(status IN('ORDERED','COLLECTED','PROCESSING','RESULT_ENTERED','VERIFIED'));

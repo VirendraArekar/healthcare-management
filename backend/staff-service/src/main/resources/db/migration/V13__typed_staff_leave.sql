@@ -1,0 +1,4 @@
+CREATE TABLE staff_leave(id uuid PRIMARY KEY,staff_id uuid NOT NULL,starts_on date NOT NULL,ends_on date NOT NULL,reason text,status varchar(30) NOT NULL,requested_by uuid,approved_by uuid,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO staff_leave(id,staff_id,starts_on,ends_on,reason,status,requested_by,approved_by,version,created_at) SELECT id,nullif(data->>'staffId','')::uuid,nullif(data->>'startsOn','')::date,nullif(data->>'endsOn','')::date,data->>'reason',coalesce(data->>'status','PENDING'),nullif(data->>'requestedBy','')::uuid,nullif(data->>'approvedBy','')::uuid,version,created_at FROM records WHERE kind='leave';
+
+ALTER TABLE staff_leave ADD FOREIGN KEY(staff_id) REFERENCES staff_profiles(id);ALTER TABLE staff_leave ADD CHECK(ends_on>=starts_on);ALTER TABLE staff_leave ADD CHECK(status IN('PENDING','APPROVED','REJECTED'));CREATE INDEX leave_staff_date ON staff_leave(staff_id,starts_on,ends_on);

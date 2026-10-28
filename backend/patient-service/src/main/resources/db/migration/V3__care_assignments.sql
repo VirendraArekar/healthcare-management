@@ -1,0 +1,1 @@
+CREATE TABLE care_assignments(patient_id uuid NOT NULL REFERENCES records(id),clinician_id uuid NOT NULL,role text NOT NULL CHECK(role IN ('DOCTOR','NURSE')),assigned_at timestamptz NOT NULL DEFAULT now(),PRIMARY KEY(patient_id,clinician_id));CREATE INDEX assigned_clinician ON care_assignments(clinician_id);

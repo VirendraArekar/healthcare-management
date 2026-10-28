@@ -1,0 +1,3 @@
+hospital:
+  environment: preprod
+  demo-enabled: false

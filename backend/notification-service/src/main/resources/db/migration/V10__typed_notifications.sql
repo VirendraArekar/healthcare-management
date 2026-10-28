@@ -1,0 +1,3 @@
+CREATE TABLE notifications(id uuid PRIMARY KEY,patient_id uuid,event_type varchar(120) NOT NULL,aggregate_id uuid NOT NULL,message text NOT NULL,is_read boolean NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO notifications(id,patient_id,event_type,aggregate_id,message,is_read,version,created_at) SELECT id,nullif(data->>'patientId','')::uuid,data->>'eventType',nullif(data->>'aggregateId','')::uuid,data->>'message',coalesce((data->>'read')::boolean,false),version,created_at FROM records WHERE kind='notification';
+CREATE INDEX notifications_owner_created ON notifications(patient_id,created_at);

@@ -1,0 +1,4 @@
+CREATE TABLE encounters(id uuid PRIMARY KEY,patient_id uuid NOT NULL,doctor_id uuid,diagnosis text NOT NULL,notes text NOT NULL,treatment text NOT NULL,status varchar(30) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO encounters(id,patient_id,doctor_id,diagnosis,notes,treatment,status,version,created_at) SELECT id,nullif(data->>'patientId','')::uuid,nullif(data->>'doctorId','')::uuid,data->>'diagnosis',data->>'notes',data->>'treatment',coalesce(data->>'status','OPEN'),version,created_at FROM records WHERE kind='encounter';
+CREATE INDEX encounters_owner_created ON encounters(patient_id,created_at);
+ALTER TABLE record_history DROP CONSTRAINT record_history_record_id_fkey;ALTER TABLE record_history ADD FOREIGN KEY(record_id) REFERENCES encounters(id);

@@ -1,0 +1,2 @@
+CREATE TABLE staff_profiles(id uuid PRIMARY KEY,name varchar(150) NOT NULL,department varchar(100) NOT NULL,specialty varchar(100) NOT NULL,email varchar(254),phone varchar(30),status varchar(30) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO staff_profiles(id,name,department,specialty,email,phone,status,version,created_at) SELECT id,data->>'name',data->>'department',data->>'specialty',data->>'email',data->>'phone',coalesce(data->>'status','ACTIVE'),version,created_at FROM records WHERE kind='staff';

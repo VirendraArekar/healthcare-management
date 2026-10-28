@@ -1,0 +1,1 @@
+CREATE EXTENSION IF NOT EXISTS btree_gist;ALTER TABLE staff_leave ADD CONSTRAINT approved_leave_no_overlap EXCLUDE USING gist(staff_id WITH =,daterange(starts_on,ends_on,'[]')WITH &&)WHERE(status='APPROVED');

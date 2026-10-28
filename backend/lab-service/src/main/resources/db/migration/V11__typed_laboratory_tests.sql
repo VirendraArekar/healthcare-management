@@ -1,0 +1,4 @@
+CREATE TABLE laboratory_tests(id uuid PRIMARY KEY,name varchar(200) NOT NULL,reference_range varchar(200) NOT NULL,unit varchar(40) NOT NULL,specimen_type varchar(80) NOT NULL,turnaround_hours integer NOT NULL,price numeric(14,2) NOT NULL,status varchar(30) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO laboratory_tests(id,name,reference_range,unit,specimen_type,turnaround_hours,price,status,version,created_at) SELECT id,data->>'name',data->>'referenceRange',data->>'unit',coalesce(data->>'specimenType','Blood'),coalesce(nullif(data->>'turnaroundHours','')::integer,24),coalesce(nullif(data->>'price','')::numeric,0),coalesce(data->>'status','ACTIVE'),version,created_at FROM records WHERE kind='test-catalog';
+
+CREATE UNIQUE INDEX laboratory_test_name ON laboratory_tests(lower(name));ALTER TABLE laboratory_tests ADD CHECK(price>=0 AND turnaround_hours>0);

@@ -1,0 +1,4 @@
+CREATE TABLE working_schedules(id uuid PRIMARY KEY,staff_id uuid NOT NULL,day_of_week varchar(12) NOT NULL,starts_at time NOT NULL,ends_at time NOT NULL,timezone varchar(64) NOT NULL,status varchar(30) NOT NULL,version bigint NOT NULL DEFAULT 0,created_at timestamptz NOT NULL DEFAULT now());
+INSERT INTO working_schedules(id,staff_id,day_of_week,starts_at,ends_at,timezone,status,version,created_at) SELECT id,nullif(data->>'staffId','')::uuid,data->>'dayOfWeek',nullif(data->>'startsAt','')::time,nullif(data->>'endsAt','')::time,coalesce(data->>'timezone','UTC'),coalesce(data->>'status','ACTIVE'),version,created_at FROM records WHERE kind='schedule';
+
+ALTER TABLE working_schedules ADD FOREIGN KEY(staff_id) REFERENCES staff_profiles(id);ALTER TABLE working_schedules ADD CHECK(ends_at>starts_at);CREATE INDEX schedules_staff_day ON working_schedules(staff_id,day_of_week);

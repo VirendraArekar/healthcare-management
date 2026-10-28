@@ -1,0 +1,1 @@
+CREATE TABLE inventory_alerts(batch_id uuid NOT NULL REFERENCES batches(id),alert_type varchar(30) NOT NULL,alert_day date NOT NULL DEFAULT current_date,PRIMARY KEY(batch_id,alert_type,alert_day));ALTER TABLE movements ADD COLUMN reason text;

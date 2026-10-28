@@ -1,0 +1,6 @@
+ALTER TABLE batches ADD COLUMN version bigint NOT NULL DEFAULT 0;ALTER TABLE batches ADD COLUMN created_at timestamptz NOT NULL DEFAULT now();ALTER TABLE batches ADD COLUMN batch_number varchar(64) NOT NULL DEFAULT ('BATCH-'||left(gen_random_uuid()::text,12));ALTER TABLE batches ADD COLUMN medicine_id uuid;
+INSERT INTO medicines(id,name,strength,unit,reorder_level,status) SELECT gen_random_uuid(),b.medicine,'Unspecified','unit',10,'NEEDS_REVIEW' FROM (SELECT DISTINCT medicine FROM batches) b WHERE NOT EXISTS(SELECT 1 FROM medicines m WHERE lower(m.name)=lower(b.medicine));
+UPDATE batches b SET medicine_id=m.id FROM medicines m WHERE lower(m.name)=lower(b.medicine);
+ALTER TABLE batches ALTER COLUMN medicine_id SET NOT NULL;ALTER TABLE batches ADD FOREIGN KEY(medicine_id)REFERENCES medicines(id);CREATE UNIQUE INDEX medicine_batch_number ON batches(batch_number);
+CREATE FUNCTION resolve_batch_medicine()RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.medicine_id IS NULL THEN SELECT id INTO NEW.medicine_id FROM medicines WHERE lower(name)=lower(NEW.medicine);END IF;IF NEW.medicine_id IS NULL THEN RAISE EXCEPTION 'Unknown medicine' USING ERRCODE='23514';END IF;RETURN NEW;END;$$;
+CREATE TRIGGER batch_catalogue BEFORE INSERT OR UPDATE ON batches FOR EACH ROW EXECUTE FUNCTION resolve_batch_medicine();

@@ -1,0 +1,3 @@
+hospital:
+  environment: uat
+  demo-enabled: false
