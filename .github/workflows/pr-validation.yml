@@ -1,0 +1,16 @@
+name: Pull request validation
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  backend:
+    uses: ./.github/workflows/backend-tests.yml
+  frontend:
+    uses: ./.github/workflows/frontend-tests.yml
+  security:
+    uses: ./.github/workflows/security-scan.yml
+  images:
+    uses: ./.github/workflows/docker-build.yml

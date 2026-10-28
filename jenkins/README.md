@@ -1,0 +1,2 @@
+# Jenkins release orchestration
+Use a restricted agent with Git, Python 3, Helm 3, kubectl and a least-privilege environment kubeconfig credential. GitHub Actions owns builds and checks. Jenkins deploys an operator-supplied approved immutable image manifest; it does not rebuild the source. Choose Jenkins OR GitHub deployment workflows for a given environment, never both concurrently. Publishing, provenance verification and promotion evidence require registry integration by the operator. No unattended production deployment is configured.

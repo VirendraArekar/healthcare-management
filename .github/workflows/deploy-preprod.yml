@@ -1,0 +1,27 @@
+name: Deploy preprod
+on:
+  workflow_dispatch:
+    inputs:
+      release_values:
+        description: Reviewed repository path to immutable digest values from a verified release
+        required: true
+permissions:
+  contents: read
+concurrency:
+  group: hospital-preprod
+  cancel-in-progress: false
+jobs:
+  deploy:
+    environment: preprod
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8
+      - name: Validate approved digest manifest
+        env:
+          RELEASE_VALUES: ${{ inputs.release_values }}
+        run: python3 scripts/validate-release.py "$RELEASE_VALUES"
+      - name: Deploy same approved artifact
+        env:
+          RELEASE_VALUES: ${{ inputs.release_values }}
+        run: helm upgrade --install hospital infrastructure/kubernetes/helm/hospital-platform -n hospital-preprod --create-namespace -f infrastructure/kubernetes/helm/hospital-platform/values-preprod.yaml -f "$RELEASE_VALUES" --atomic --wait --timeout 10m
+      - run: curl --fail "${{ vars.SMOKE_URL }}/"
