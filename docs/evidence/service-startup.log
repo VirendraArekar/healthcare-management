@@ -1,0 +1,12 @@
+auth-service: healthy on 18600
+patient-service: healthy on 18601
+staff-service: healthy on 18602
+appointment-service: healthy on 18603
+medical-record-service: healthy on 18604
+lab-service: healthy on 18605
+pharmacy-service: healthy on 18606
+billing-service: healthy on 18607
+notification-service: healthy on 18608
+reporting-service: healthy on 18609
+api-gateway: healthy on 60880
+HOSPITAL_APPLICATIONS_READY
